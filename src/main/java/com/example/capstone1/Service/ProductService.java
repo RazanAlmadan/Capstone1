@@ -84,26 +84,7 @@ public class ProductService {
         return null;
     }
 
-    /// get the cheapest product
-    public Product getCheapestProductPrice(String productName){
-        ArrayList<Product> temp = new ArrayList<>();
-        for (int i = 0; i<products.size(); i++){
-            if (products.get(i).getName().equalsIgnoreCase(productName)){
-                temp.add(products.get(i));
-            }
-        }
-        if (temp.isEmpty()){
-            return null;
-        }
-        int index = 0;
-        double cheapest = temp.get(0).getPrice();
-        for (int i = 1; i<temp.size(); i++){
-            if (temp.get(i).getPrice() < cheapest){
-                index = i;
-            }
-        }
-        return temp.get(index);
-    }
+
 
 
 

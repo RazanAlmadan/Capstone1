@@ -232,7 +232,9 @@ public class UserService {
         }
         if (!isAdmin) return 1;
 
-        if (discount < 0.1 || discount > 0.95) return 2;
+        if (discount < 10 || discount > 95) return 2;
+
+        discount = discount/100;
 
         // if a discount is active, restore old prices first so we don't save a discounted price!
         if (!productService.getOldPrices().isEmpty()) {

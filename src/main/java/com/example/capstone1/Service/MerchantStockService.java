@@ -126,53 +126,9 @@ public class MerchantStockService {
     }
 
 
-    /// Get Merchant with the cheapest price for a product
-    public Merchant getCheapestMerchantForAProduct(String productName){
-        Product product = productService.getCheapestProductPrice(productName);
-        if (product == null){
-            return null;
-        }
-        String merchantID = "";
-        for (int i = 0; i<merchantStocks.size(); i++){
-            if (merchantStocks.get(i).getProductID().equals(product.getID())){
-                merchantID = merchantStocks.get(i).getMerchantID();
-                break;
-            }
-        }
-        for (int i = 0; i<merchantService.getMerchants().size(); i++){
-            if (merchantService.getMerchants().get(i).getID().equals(merchantID)){
-                return merchantService.getMerchants().get(i);
-            }
-        }
-        return null;
-    }
 
-    /// Trade products with another merchant
-    public boolean tradeMerchantProducts(String merchantID1, String merchantID2){
-        String merchantStockID1 = "";
-        int index1 = 0;
-        String merchantStockID2 = "";
-        int index2 =0;
-        for (int i = 0; i<merchantStocks.size(); i++){
-            if (merchantStocks.get(i).getMerchantID().equals(merchantID1)){
-                merchantStockID1 = merchantStocks.get(i).getID();
-                index1 = i;
-            }
-            if (merchantStocks.get(i).getMerchantID().equals(merchantID2)){
-                merchantStockID2 = merchantStocks.get(i).getID();
-                index2 = i;
-            }
-        }
-        if (merchantStockID1.isEmpty() || merchantStockID2.isEmpty()){
-            return false;
-        }
 
-        MerchantStock temp = merchantStocks.get(index1);
-        merchantStocks.get(index2).setMerchantID(merchantID1);
-        merchantStocks.get(index2).setMerchantID(temp.getMerchantID());
-        return true;
 
-    }
 
     /// get all merchant stock details for a merchant
     public ArrayList<MerchantStock> getMerchantStockByMerchantID(String merchantID){

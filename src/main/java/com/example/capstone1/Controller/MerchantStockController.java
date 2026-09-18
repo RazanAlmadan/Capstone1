@@ -97,21 +97,7 @@ public class MerchantStockController {
         return ResponseEntity.status(200).body(merchantStockService.getLowStockProducts());
     }
 
-    @GetMapping("/get/cheapest/merchant/{productName}")
-    public ResponseEntity<?> getCheapestMerchantForAProduct(@PathVariable String productName){
-        if (merchantStockService.getCheapestMerchantForAProduct(productName) != null){
-            return ResponseEntity.status(200).body(merchantStockService.getCheapestMerchantForAProduct(productName));
-        }
-        return ResponseEntity.status(200).body(new ApiResponse("Product was not found"));
-    }
 
-    @PutMapping("/trade/products/{merchantID1}/{merchantID2}")
-    public ResponseEntity<?> tradeMerchantProducts(@PathVariable String merchantID1, @PathVariable String merchantID2){
-        if (merchantStockService.tradeMerchantProducts(merchantID1, merchantID2)){
-            return ResponseEntity.status(200).body(new ApiResponse("A trade was made"));
-        }
-        return ResponseEntity.status(400).body(new ApiResponse("Merchant ID was not found"));
-    }
 
     @GetMapping("/get/by/merchantID/{merchantID}")
     public ResponseEntity<?> getMerchantStockByMerchantID(@PathVariable String merchantID){
